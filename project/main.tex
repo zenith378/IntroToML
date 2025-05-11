@@ -297,7 +297,14 @@ Support: 13.6\%, Confidence: 56.8\%, Lift: 2.14
 
 These findings suggest that short-term contracts, paperless billing, and the use of fiber optic internet service are key factors associated with customer churn, as also highlighted by the feature importance analysis of the Decision Tree classifier.
 
+\section{Final Thoughts}
+The most impactful preprocessing choices were the one-hot encoding of categorical variables and their conversion to boolean format, which also helped remove spurious categories. Skipping these steps might have significantly affected performance, introducing some biases.
 
+For clustering, I used a reduced-dimensionality version of the dataset by getting continuos variables with PCA. High-dimensional boolean dataset would likely have been less informative, though PCA on boolean data has its limitations. I also chose to retain 21 variables (out of 26), but a more selective feature choice might have led to different results. For the DBSCAN, I could have divided the dataset into groups of different densities and perform several DBSCANs on those group with an appropriate value of $\epsilon$.
+
+In classification, I applied model-specific optimization strategies—such as grid search and cost-complexity pruning—while others relied on default settings. A more systematic tuning process could have improved predictive accuracy. Moreover, the target variable was not balanced, possibly introducing bias into the results.
+
+Finally, pattern mining confirmed and complemented the insights found through classification, although its effectiveness was naturally constrained by the boolean structure of the dataset and the threshold settings used for rule extraction.
 \section{Appendix}
 Lists of plots and tables that could not make it into the report but provide useful information about all the things discussed in this report. Addional studies performed were not reported in this report.
 \begin{figure}[H]
@@ -308,7 +315,7 @@ Lists of plots and tables that could not make it into the report but provide use
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\linewidth]{figures/understanding/pca_explained_variance.pdf}
-\caption{Normalized eigenvalues (explained variance by each component) and total variance explained}
+\caption{Normalized eigenvalues (explained variance by each component) and cumulative variance explained}
 \label{fig:enter-label}
 \end{figure}
 \begin{table}
